@@ -22,6 +22,10 @@ Official Flagsmith server SDK, MIT License, installed via npm (`package-lock.jso
 
 Voice search may look up a spoken Mumbai locality via OpenStreetMap Nominatim (https://nominatim.org, usage policy: max 1 request/second, identifying User-Agent, caching). Data © OpenStreetMap contributors, ODbL.
 
+### three.js r187 (vendored)
+
+`public/vendor/three.module.js` and `three.core.js` are the unmodified three.js 0.187.0 build (MIT; full text in `public/vendor/THREE-LICENSE.txt`), used for the home-page river animation on capable desktops only. https://github.com/mrdoob/three.js
+
 ### MapLibre GL JS 6.19.0 (vendored)
 
 `public/vendor/maplibre-gl.mjs`, `maplibre-gl-worker.mjs` and `maplibre-gl.css` are unmodified distribution files from the `maplibre-gl` npm package (source maps references removed). License: BSD-3-Clause, full text in `public/vendor/MAPLIBRE-LICENSE.txt`. https://github.com/maplibre/maplibre-gl-js

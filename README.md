@@ -18,6 +18,10 @@ node scripts/import-mcgm.mjs /tmp/mcgm-ocr.txt --resolve                  # pars
 - 2025 run: 208 records from 288 listed ponds (some rows list several ponds); 105 with coordinates, 86 links unreadable from OCR, 77 names unreadable (shown as "MCGM artificial pond N"). One repeated link merged; one possible duplicate flagged.
 - Re-running the import updates the store on next start without overwriting staff status posts or any record an operator has verified or rejected. Municipal sites are not bookable.
 
+## Home page
+
+The home hero is a WebGL river (three.js, vendored, about 2.1 MB) with drifting lantern lights and a 3D journey carousel. three.js loads only on screens 900 px and wider; reduced motion, data saver and small screens get a static gradient and never download it. The carousel pauses on hover/focus, has previous/next/dot controls and swipe, and stays still under reduced motion.
+
 ## Find sites near me
 
 Explore opens with **Use my location** and a manual **Choose an area** fallback. Nothing is requested on page load.

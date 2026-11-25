@@ -13,3 +13,4 @@ No package lock is needed because no packages are declared. No transitive applic
 | MapLibre GL JS | 6.19.0 (vendored) | BSD-3-Clause | Map rendering, `public/vendor/`. |
 | qrcode | 1.5.4 (pinned) | MIT | Server-side SVG QR codes for booking passes. |
 | jsQR | 1.4.0 (vendored) | Apache-2.0 | In-browser QR decoding for the staff gate scanner, `public/vendor/jsQR.js`. |
+| three.js | 0.187.0 (vendored) | MIT | Home hero WebGL river; lazy-loaded on desktops only, skipped for reduced motion / data saver. |
