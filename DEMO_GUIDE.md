@@ -12,3 +12,5 @@
 For the staff view, choose **Staff sign in**, enter the configured credentials, and review the read-only operations site overview. Sign out when done. All values remain fictional demo data.
 
 The displayed booking pass is illustrative only, not scan-ready. Queue numbers are fictional and are not refreshed from an operational system. Staff acknowledgement, QR scanning, navigation and visit completion are future work and must not be narrated as implemented.
+
+#
