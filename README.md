@@ -75,6 +75,26 @@ Setup: create a free project at app.flagsmith.com â†’ Development environment â†
 
 `GET /api/v1/health` returns service status, uptime, store health, flag mode and voice usage (no secrets, no visitor data). It requires `Authorization: Bearer <OPS_MONITOR_TOKEN>` (24+ characters) or a staff session. In NudgeBee, add a Workflow with an **HTTP Request** task (`integrations.http`): method GET, auth type Bearer, token = `OPS_MONITOR_TOKEN`, URL = your deployed app's `/api/v1/health`, on a schedule trigger; alert when `status_code` is not 200 or `body.data.status` is not `ok`. NudgeBee's cloud cannot reach `localhost`, so this needs a deployed (HTTPS) URL or a self-hosted NudgeBee on the same network. No NudgeBee workflow has been configured or verified yet.
 
+### Integration Q&A
+
+#### How have you used Flagsmith, and what problem does it solve?
+
+I use Flagsmith to control features such as nearby discovery, map view, Apify imports, voice assistance, and staff status updates. This lets the team enable or disable features as they roll them out, without changing the app's code for each rollout. Flagsmith controls feature availability; staff-only features still require staff sign-in.
+
+**What I liked about Flagsmith:** It makes rollouts easier to manage and gives the team a quick way to switch off a feature if it causes problems.
+
+#### How have you used NudgeBee, and what problem does it solve?
+
+I prepared a protected health endpoint for monitoring VisarjanOps. NudgeBee could use monitoring data to help the team notice and investigate app issues. The NudgeBee workflow and observability connections have not yet been configured or verified, so this is prepared rather than a live integration.
+
+**What I liked about NudgeBee:** Its goal of bringing monitoring information together to help teams understand incidents faster.
+
+#### How have you used Sarvam AI, and what problem does it solve?
+
+I integrated Sarvam as an optional voice assistant for site discovery. When configured, visitors can speak a search request instead of typing; the app transcribes it, matches it to a listed area or site, and can provide a spoken response. It requires server credentials and the `voice_assistance` feature flag.
+
+**What I liked about Sarvam AI:** Voice search can make finding a site more convenient for people who are on the move or prefer speaking to typing, with support for multiple Indian languages.
+
 ## Run locally
 
 Requirements: Node.js 20 or later. The local demo starts without a database or external account; Apify is optional and requires an Apify account.
@@ -127,6 +147,10 @@ The pass currently displays a demo visual derived from the reference. It is **no
 ## Current repository and architecture
 
 The working application uses a dependency-free Node.js HTTP server plus a static HTML/CSS/JavaScript client, with JSON-file persistence in `data/demo.json`. The server implements public site discovery, booking creation with serialized slot-capacity reservation, secured booking lookup by a random recovery key (stored as a hash), pass metadata, assistance request create/status, feedback persistence, simulated SSE, demo reset, and an optional protected Apify Actor run that stages a capped dataset for staff review. The interface is responsive and uses fictional demo data.
+
+### Deploying this demo to Vercel
+
+The static client is served from `public/`; Vercel serves that directory as the site output. API requests route through `api/[...path].js` to the existing Node.js request handler. In Vercel, the JSON store defaults to `/tmp/visarjanops`, which is temporary per function instance; bookings and operations updates can reset or differ between instances. Staff sessions are also held in memory. Use a shared database and session store before relying on this for a public event. Add `OPS_USERNAME`, `OPS_PASSWORD`, and any Flagsmith/Sarvam settings in the Vercel project environment variables; do not commit secrets.
 
 This is a runnable foundation, not the complete Node.js/PostgreSQL platform planned for production. The application does not yet provide React/TypeScript, PostgreSQL/PostGIS, Redis, production database migrations, a production identity provider, real QR generation/scanning, cancellation, facilities API, live queue processing, navigation, or complete visit/feedback UI. Do not represent these features as implemented.
 
